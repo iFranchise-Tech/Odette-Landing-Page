@@ -26,6 +26,19 @@ npm run build
 npm start
 ```
 
+## Cloudflare Workers deployment
+
+This Next.js App Router project uses the OpenNext Cloudflare adapter and deploys as a Cloudflare Worker with static assets. Keep production secrets out of source control.
+
+```bash
+npm run cf:preview
+npm run cf:deploy
+```
+
+Before deploying, authenticate Wrangler with `npx wrangler login`. Configure `GOOGLE_SCRIPT_URL` and `RESEND_API_KEY` as Worker secrets. Set non-secret production values such as `RESEND_FROM_EMAIL` and `CONTACT_NOTIFICATION_EMAIL` in Worker settings. `NEXT_PUBLIC_*` values are read during the build and must be present in the build environment.
+
+The Worker uses `nodejs_compat` for the existing Next.js server route and email integration. Its temporary `*.workers.dev` URL can be checked before attaching `odette.ifranchise.in` as a custom domain.
+
 ## Troubleshooting
 
 If you see a runtime error like `Cannot find module './611.js'`, the local Next.js cache is stale. Run:

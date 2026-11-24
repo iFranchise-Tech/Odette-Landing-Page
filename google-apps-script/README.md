@@ -41,11 +41,11 @@ GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 
 Set this in:
 - `.env.local` for local development
-- Vercel → Project → **Settings** → **Environment Variables**
+- Cloudflare Dashboard → **Workers & Pages** → Worker → **Settings** → **Variables and Secrets**
   - Name: `GOOGLE_SCRIPT_URL`
   - Value: your Web App URL ending in `/exec`
   - Environment: **Production** (and Preview if you use it)
-  - Then click **Redeploy** the latest deployment (env vars apply only after redeploy)
+  - Save the secret and redeploy the Worker
 
 9. Restart the dev server after changing env vars: `npm run dev`
 
@@ -76,7 +76,7 @@ Do **not** create a new Web app. Edit the current deployment:
 7. **Version:** New version
 8. Click **Deploy**
 
-The `/exec` URL stays the same. No Vercel env change is needed if `GOOGLE_SCRIPT_URL` is already set.
+The `/exec` URL stays the same. Add it to the production Worker secrets as `GOOGLE_SCRIPT_URL`.
 
 ## Test
 

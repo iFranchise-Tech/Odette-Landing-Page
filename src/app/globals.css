@@ -2518,31 +2518,40 @@ body,
   }
 }
 
-/* Keep browser autofill and form focus states monochrome. */
+/* Keep form hover, focus and browser autofill states monochrome. */
 .form-field-hero:focus-within,
 .form-field-secondary:focus,
+.form-field-secondary:focus-visible,
 .form-field-hero:focus,
+.form-field-hero:focus-visible,
 .form-field-hero:hover,
 .form-field-secondary:hover {
   border-color: #85817d !important;
   outline: none !important;
-  box-shadow: 0 0 0 2px rgb(23 23 23 / 7%) !important;
+  box-shadow: 0 0 0 2px rgb(23 23 23 / 5%) !important;
   background-color: #fff !important;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:autofill,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+textarea:autofill,
 select:-webkit-autofill {
   -webkit-text-fill-color: #171717 !important;
+  color: #171717 !important;
+  -webkit-background-clip: padding-box !important;
   -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
   box-shadow: 0 0 0 1000px #fff inset !important;
   background-color: #fff !important;
+  background-image: none !important;
   caret-color: #171717;
-  transition: background-color 99999s ease-out 0s;
+  transition: background-color 0s;
 }
 
 .form-field-hero input,
@@ -2558,6 +2567,13 @@ select:-webkit-autofill {
 .form-field-secondary:focus-visible {
   background-color: #fff !important;
   color: #171717 !important;
+}
+
+.form-field-hero input:focus,
+.form-field-secondary input:focus,
+.form-field-secondary textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 ::selection {

@@ -10,6 +10,10 @@
     "clean": "node -e \"require('node:fs').rmSync('.next',{recursive:true,force:true})\"",
     "dev:clean": "npm run clean && next dev",
     "build:clean": "npm run clean && next build",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "npm run cf:build && opennextjs-cloudflare preview",
+    "cf:deploy": "npm run cf:build && opennextjs-cloudflare deploy",
+    "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "convert-images": "node scripts/convert-png-to-webp.mjs",
     "generate-favicons": "node scripts/generate-favicons.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.mjs",
@@ -30,6 +34,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
+    "@opennextjs/cloudflare": "^1.20.18",
     "@tailwindcss/postcss": "^4.0.9",
     "@types/node": "^22.13.5",
     "@types/react": "^19.0.10",
@@ -39,6 +44,7 @@
     "eslint-config-next": "^15.2.4",
     "sharp": "^0.35.3",
     "tailwindcss": "^4.0.9",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "wrangler": "^4.167.0"
   }
 }

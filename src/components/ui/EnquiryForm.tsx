@@ -82,7 +82,7 @@ function HeroIconField({
 }) {
   return (
     <div
-      className={`flex h-10 w-full min-w-0 items-stretch overflow-hidden rounded-xl border border-border bg-white shadow-[0_1px_4px_rgba(43,43,43,0.08)] focus-within:border-cta focus-within:ring-[3px] focus-within:ring-cta/20 ${className}`}
+      className={`flex h-10 w-full min-w-0 items-stretch overflow-hidden rounded-xl border border-border bg-white shadow-[0_1px_4px_rgba(43,43,43,0.08)] focus-within:border-[#85817d] focus-within:ring-2 focus-within:ring-black/5 ${className}`}
     >
       <span className="flex w-10 shrink-0 items-center justify-center border-r border-border/80 bg-[#f7f5f2] text-charcoal/80" aria-hidden>
         {icon}

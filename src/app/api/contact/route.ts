@@ -77,7 +77,7 @@ export async function POST(request: Request) {
       }
     } else {
       sheetsError =
-        "GOOGLE_SCRIPT_URL is not configured (set it in Vercel → Settings → Environment Variables for Production, then Redeploy)";
+        "GOOGLE_SCRIPT_URL is not configured (add it to the production Worker secrets, then redeploy)";
       console.error("Google Sheets sync skipped:", sheetsError);
     }
 

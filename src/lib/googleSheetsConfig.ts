@@ -1,7 +1,7 @@
 import type { LeadPayload } from "@/lib/submitLead";
 
 export function getGoogleScriptUrl(): string | undefined {
-  // Prefer server-only env; fall back to NEXT_PUBLIC if that is what was set on Vercel
+  // Prefer the server-only Worker secret; retain NEXT_PUBLIC as a backwards-compatible fallback.
   return (
     process.env.GOOGLE_SCRIPT_URL?.trim() ||
     process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL?.trim() ||
