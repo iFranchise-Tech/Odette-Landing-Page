@@ -1,10 +1,12 @@
 import type { LeadPayload } from "@/lib/submitLead";
 
+import { getServerEnv } from "@/lib/serverEnv";
+
 export function getGoogleScriptUrl(): string | undefined {
   // Prefer the server-only Worker secret; retain NEXT_PUBLIC as a backwards-compatible fallback.
   return (
-    process.env.GOOGLE_SCRIPT_URL?.trim() ||
-    process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL?.trim() ||
+    getServerEnv("GOOGLE_SCRIPT_URL") ||
+    getServerEnv("NEXT_PUBLIC_GOOGLE_SCRIPT_URL") ||
     undefined
   );
 }
@@ -17,6 +19,7 @@ export function buildGoogleSheetsPayload(
   payload: LeadPayload
 ): Record<string, string> {
   return {
+    ...(payload.submissionId ? { submissionId: payload.submissionId } : {}),
     fullName: payload.fullName,
     mobileNumber: payload.mobileNumber,
     email: payload.email,
