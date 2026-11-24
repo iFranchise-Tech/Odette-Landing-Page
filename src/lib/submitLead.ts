@@ -5,6 +5,7 @@ export interface LeadPayload {
   state: string;
   city: string;
   investmentBudget: string;
+  franchiseType: string;
   source: string;
   utmParameters: string;
 }

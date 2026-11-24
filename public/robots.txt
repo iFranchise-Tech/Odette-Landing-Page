@@ -3,5 +3,6 @@ Allow: /
 
 Disallow: /api/
 Disallow: /private/
+Disallow: /thank-you
 
 Sitemap: https://odette.ifranchise.in/sitemap.xml

@@ -1,167 +1,93 @@
 "use client";
 
 import { SITE_IMAGES } from "@/lib/images";
-import { CONTACT_PATH } from "@/lib/site";
+import { CONTACT_PATH, SECTION_ID_TO_PATH } from "@/lib/site";
 import { trackBookConsultation } from "@/lib/analytics";
 import { useSectionNavigation } from "@/lib/useSectionNavigation";
 import { type ElementType } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, Building2, Calendar, IndianRupee, Tag } from "lucide-react";
+import { ArrowRight, Building2, Calendar, IndianRupee, Tag } from "lucide-react";
 import Image from "next/image";
 import { fadeUp, staggerContainer } from "../ui/AnimatedSection";
-import { ctaButtonClass } from "../ui/GoldButton";
-import { EnquiryForm } from "../ui/EnquiryForm";
 
-function HighlightCard({
-  label,
-  icon: Icon,
-  fullWidth = false,
-}: {
-  label: string;
-  icon: ElementType;
-  fullWidth?: boolean;
-}) {
-  return (
-    <li
-      className={`flex items-center gap-1.5 rounded-[12px] border border-cta/20 bg-white px-2 py-2 shadow-[0_4px_14px_rgba(91,45,139,0.07)] sm:gap-2 sm:px-2.5 sm:py-2.5 lg:px-3 lg:py-3 ${
-        fullWidth ? "col-span-2" : "min-h-[2.75rem] lg:min-h-0"
-      }`}
-    >
-      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cta/10 sm:h-6 sm:w-6">
-        <Icon className="h-2.5 w-2.5 text-cta sm:h-3 sm:w-3" strokeWidth={2.25} aria-hidden />
-      </span>
-      <span
-        className={`min-w-0 flex-1 text-left font-semibold leading-snug text-charcoal ${
-          fullWidth
-            ? "text-[9px] leading-tight sm:text-[11px] sm:leading-snug md:text-xs lg:text-sm"
-            : "text-[10px] sm:text-xs md:text-sm lg:text-sm"
-        }`}
-      >
-        {label}
-      </span>
-    </li>
-  );
-}
-
-function HeroHighlightCards() {
-  return (
-    <ul className="hero-highlight-grid grid grid-cols-2 gap-2 sm:gap-2.5">
-      <HighlightCard label="Investment: ₹45 Lakhs+" icon={IndianRupee} />
-      <HighlightCard label="Model: FICO" icon={Tag} />
-      <HighlightCard label="Agreement Term: 5 years" icon={Calendar} />
-      <HighlightCard label="45+ Outlets" icon={Building2} />
-      <HighlightCard
-        label="Franchise Types: Master Franchise · Unit Franchise"
-        icon={Briefcase}
-        fullWidth
-      />
-    </ul>
-  );
-}
+const highlights: Array<{ label: string; value: string; icon: ElementType }> = [
+  { label: "Investment", value: "₹45 Lakhs+", icon: IndianRupee },
+  { label: "Business Model", value: "FICO", icon: Tag },
+  { label: "Agreement Term", value: "5 Years", icon: Calendar },
+  { label: "Outlets", value: "50+", icon: Building2 },
+];
 
 export function HeroSection() {
   const { navigate } = useSectionNavigation();
 
   return (
-    <section
-      id="hero"
-      className="viewport-section relative snap-section overflow-x-clip max-lg:min-h-[100dvh] max-lg:overflow-visible lg:overflow-hidden"
-    >
-      <div className="hero-bg pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-        <Image
-          src={SITE_IMAGES.hero.mobile.src}
-          alt=""
-          fill
-          priority
-          quality={85}
-          className="hero-mob-bg object-cover object-center lg:hidden"
-          sizes="100vw"
-        />
-        <Image
-          src={SITE_IMAGES.hero.desktop.src}
-          alt=""
-          fill
-          quality={85}
-          loading="lazy"
-          className="hero-desktop-bg hidden object-cover object-[50%_35%] lg:block"
-          sizes="100vw"
-        />
+    <section id="hero" className="viewport-section snap-section odette-hero">
+      <div className="odette-hero__visual" aria-label="Odette fashion collection">
+        <picture className="odette-hero__picture">
+          <source media="(max-width: 767px)" srcSet={SITE_IMAGES.hero.mobile.src} />
+          <Image
+            src={SITE_IMAGES.hero.desktop.src}
+            alt="Three women wearing Odette-inspired contemporary fashion in a bright studio"
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
+            className="odette-hero__image"
+          />
+        </picture>
+        <div className="odette-hero__image-wash" aria-hidden="true" />
       </div>
 
-      <div
-        className="hero-desktop-gradient pointer-events-none absolute inset-0 z-[1] hidden bg-gradient-to-r from-white/55 from-0% via-white/25 via-[24%] to-transparent to-[46%] lg:block"
-        aria-hidden
-      />
-
-      <div className="page-container relative z-10 box-border flex w-full flex-col pb-8 pt-[var(--header-height)] max-lg:overflow-visible max-lg:pb-6 max-lg:pt-[calc(var(--header-height)+0.75rem)] lg:h-full lg:justify-center lg:overflow-hidden">
+      <div className="odette-hero__content">
         <motion.div
           initial={false}
           animate="visible"
           variants={staggerContainer}
-          className="hero-stack w-full min-h-0 flex-1 max-lg:flex max-lg:flex-col max-lg:gap-2.5 max-lg:overflow-visible lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-8 xl:gap-12"
+          className="odette-hero__content-inner"
         >
-          <div className="hero-left flex w-full max-w-2xl flex-col items-center overflow-visible max-lg:mx-auto max-lg:w-full max-lg:min-w-0 max-lg:max-w-[min(100%,19.5rem)] max-lg:shrink-0 max-lg:pt-0 max-lg:text-center md:max-w-[min(100%,36rem)] lg:w-[580px] lg:max-w-[580px] lg:items-start lg:shrink-0 lg:pt-0 lg:text-left xl:w-[640px] xl:max-w-[640px]">
-            <motion.div variants={fadeUp} className="max-lg:flex max-lg:w-full max-lg:justify-center">
-              <span className="inline-flex max-w-full items-center justify-center rounded-full border border-cta/20 bg-white/95 px-4 py-1.5 text-center font-semibold text-charcoal backdrop-blur-sm max-lg:px-2.5 max-lg:py-1 max-lg:leading-tight max-lg:tracking-[0.02em] text-[8px] sm:whitespace-nowrap sm:text-[9px] md:text-[10px] lg:text-[11px] lg:leading-snug lg:tracking-normal xl:text-xs">
-                Premium Women&apos;s Fashion Franchise Opportunity
-              </span>
-            </motion.div>
+          <motion.span variants={fadeUp} className="odette-hero__eyebrow">
+            Fashion Franchise Opportunity
+          </motion.span>
 
-            <motion.h1
-              variants={fadeUp}
-              className="mt-3 w-full max-w-full font-display text-[1.1rem] font-bold uppercase leading-[1.18] tracking-[0.03em] text-charcoal max-lg:mt-1.5 max-lg:leading-[1.14] md:text-[1.2rem] lg:mt-4 lg:text-[1.85rem] lg:leading-[1.2] xl:text-[2.05rem]"
+          <motion.h1 variants={fadeUp}>
+            You Invest.<br />
+            <span>We bring Odette to life.</span>
+          </motion.h1>
+
+          <motion.p variants={fadeUp} className="odette-hero__description">
+            Own a premium women&apos;s fashion store with a professionally managed FICO business model.
+          </motion.p>
+
+          <motion.ul variants={fadeUp} className="odette-hero__highlights">
+            {highlights.map(({ label, value, icon: Icon }) => (
+              <li key={label}>
+                <span className="odette-hero__icon"><Icon aria-hidden="true" /></span>
+                <span className="odette-hero__stat-label">{label}</span>
+                <strong className="odette-hero__stat-value">{value}</strong>
+              </li>
+            ))}
+          </motion.ul>
+
+          <motion.div variants={fadeUp} className="odette-hero__actions">
+            <a
+              href={SECTION_ID_TO_PATH["invest-process"]}
+              onClick={(event) => {
+                navigate(event, SECTION_ID_TO_PATH["invest-process"]);
+              }}
+              className="odette-hero__primary"
             >
-              <span className="block">You Invest.</span>
-              <span className="block">WE RUN THE BUSINESS.</span>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="mt-3 w-full max-w-full text-[10px] leading-snug text-black max-lg:mx-auto max-lg:mt-1.5 max-lg:max-w-[17.5rem] md:max-w-md md:text-xs md:leading-relaxed lg:mt-4 lg:max-w-xl lg:text-[15px] lg:leading-relaxed xl:text-base"
+              View investment <ArrowRight aria-hidden="true" />
+            </a>
+            <a
+              href={CONTACT_PATH}
+              onClick={(event) => {
+                trackBookConsultation("hero_talk_to_team");
+                navigate(event, CONTACT_PATH);
+              }}
+              className="odette-hero__secondary"
             >
-              Own a premium women&apos;s fashion store with a professionally{" "}
-              <span className="block">managed FICO business model.</span>
-            </motion.p>
-
-            <motion.div
-              variants={fadeUp}
-              className="mt-4 w-full max-w-full max-lg:mx-auto max-lg:mt-2 max-lg:max-w-[min(100%,19.5rem)] md:max-w-[min(100%,36rem)] lg:mt-5 lg:max-w-md"
-            >
-              <HeroHighlightCards />
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="hero-enquire-desktop mt-4 flex w-full max-w-md justify-center max-lg:hidden lg:mt-5"
-            >
-              <a
-                href={CONTACT_PATH}
-                onClick={(e) => {
-                  trackBookConsultation("hero_desktop_enquire");
-                  navigate(e, CONTACT_PATH);
-                }}
-                className={`${ctaButtonClass()} min-h-[2.75rem] whitespace-nowrap uppercase tracking-[0.06em]`}
-              >
-                Enquire Now
-                <ArrowRight className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />
-              </a>
-            </motion.div>
-          </div>
-
-          <motion.div
-            variants={fadeUp}
-            className="hero-form-wrap flex min-h-0 w-full max-lg:mx-auto max-lg:mt-0 max-lg:max-w-[min(100%,19.5rem)] max-lg:min-w-0 max-lg:flex-none md:max-w-[min(100%,36rem)] lg:ml-auto lg:mr-[-0.75rem] lg:mt-0 lg:w-[380px] lg:max-w-[380px] lg:shrink-0 lg:self-center lg:translate-x-2 xl:mr-[-1rem] xl:w-[400px] xl:max-w-[400px] xl:translate-x-3"
-          >
-            <EnquiryForm
-              variant="hero"
-              id="hero-form"
-              heading="Check Your Franchise Eligibility"
-              buttonText="CHECK FRANCHISE AVAILABILITY"
-              showHeading
-              showEmail={true}
-              showBudget
-              stackStateCityOnMobile
-            />
+              Talk to team
+            </a>
           </motion.div>
         </motion.div>
       </div>

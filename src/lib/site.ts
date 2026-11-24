@@ -9,8 +9,7 @@ export const SITE_SECTIONS = [
   { id: "hero", path: "/", label: null },
   { id: "about-odette", path: "/about", label: "About" },
   { id: "why-odette", path: "/why-odette", label: "Why Odette" },
-  { id: "invest-process", path: "/franchise-investment", label: "Franchise Investment" },
-  { id: "why-ifranchise", path: "/ifranchise", label: "iFranchise" },
+  { id: "invest-process", path: "/franchise-investment", label: "Investment" },
   { id: "faq", path: "/faq", label: "FAQ" },
   { id: "contact", path: "/contact", label: "Contact" },
 ] as const;

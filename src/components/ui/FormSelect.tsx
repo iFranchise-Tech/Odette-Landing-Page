@@ -153,8 +153,8 @@ export function FormSelect({
                   onClick={() => handleSelect(option.value)}
                   className={`w-full truncate px-3 py-2 text-left text-sm transition-colors duration-150 ${
                     isSelected
-                      ? "bg-cta/15 font-medium text-charcoal"
-                      : "text-charcoal hover:bg-cta/10"
+                      ? "bg-[#f2f2f2] font-medium text-charcoal"
+                      : "text-charcoal hover:bg-[#f7f7f7]"
                   }`}
                 >
                   {option.label}

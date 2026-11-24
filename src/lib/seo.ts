@@ -53,7 +53,7 @@ export const SECTION_SEO: Record<
   "/about": {
     title: "About Odette | Mass-Premium Fashion Brand Built for India",
     description:
-      "Discover Odette — India's mass-premium women's fashion brand with 45+ stores. Learn about the brand, retail footprint, and franchise growth opportunity.",
+      "Discover Odette — India's mass-premium women's fashion brand with 50+ stores. Learn about the brand, retail footprint, and franchise growth opportunity.",
     changeFrequency: "monthly",
     priority: 0.85,
   },
@@ -67,16 +67,9 @@ export const SECTION_SEO: Record<
   "/franchise-investment": {
     title: "Odette Franchise Investment | ₹45 Lakhs+ FICO Model India",
     description:
-      "Odette franchise investment overview: from ₹45 Lakhs, FICO company-operated model, 5-year agreement, 45+ outlets, and structured store launch support.",
+      "Odette franchise investment overview: from ₹45 Lakhs, FICO company-operated model, 5-year agreement, 50+ outlets, and structured store launch support.",
     changeFrequency: "monthly",
     priority: 0.9,
-  },
-  "/ifranchise": {
-    title: "iFranchise Consulting | India's Trusted Franchise Growth Partner",
-    description:
-      "Partner with iFranchise for end-to-end franchise consulting — opportunity assessment, location analysis, legal support, and launch guidance for Odette.",
-    changeFrequency: "monthly",
-    priority: 0.8,
   },
   "/faq": {
     title: "Odette Franchise FAQ | Investment, Support & Cities",

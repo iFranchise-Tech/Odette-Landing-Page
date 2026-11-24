@@ -30,6 +30,7 @@ export interface EnquiryFormData {
   state: string;
   city: string;
   investmentBudget: string;
+  franchiseType: string;
 }
 
 interface EnquiryFormProps {
@@ -53,6 +54,8 @@ const budgetOptions = [
   "₹45–75 Lakhs",
   "Above ₹75 Lakhs",
 ] as const;
+
+const franchiseTypeOptions = ["Unit Franchise", "Master Franchise"] as const;
 
 const countryCodes = [
   { code: "+91", label: "IN +91" },
@@ -119,6 +122,7 @@ export function EnquiryForm({
     state: "",
     city: "",
     investmentBudget: "",
+    franchiseType: "",
   });
 
   const isHero = variant === "hero";
@@ -144,6 +148,11 @@ export function EnquiryForm({
 
   const budgetSelectOptions = useMemo(
     () => budgetOptions.map((option) => ({ value: option, label: option })),
+    []
+  );
+
+  const franchiseTypeSelectOptions = useMemo(
+    () => franchiseTypeOptions.map((option) => ({ value: option, label: option })),
     []
   );
 
@@ -223,7 +232,7 @@ export function EnquiryForm({
       return;
     }
 
-    if (showBudget && !formData.investmentBudget) {
+    if (showBudget && (!formData.investmentBudget || !formData.franchiseType)) {
       return;
     }
 
@@ -240,6 +249,7 @@ export function EnquiryForm({
       state: resolvedState,
       city: cityValue,
       investmentBudget: formData.investmentBudget,
+      franchiseType: formData.franchiseType,
       source: attribution.source,
       utmParameters: attribution.utmParameters,
     };
@@ -434,19 +444,30 @@ export function EnquiryForm({
           )}
 
           {showBudget && (
-            <>
-              <label htmlFor={`${id}-budget`} className="sr-only">
-                Investment budget
-              </label>
-              <FormSelect
-                id={`${id}-budget`}
-              value={formData.investmentBudget}
-              onChange={(budget) => setFormData({ ...formData, investmentBudget: budget })}
-              options={budgetSelectOptions}
-              placeholder="Select budget"
-              fieldClassName={`${heroFieldClass} px-3.5 pr-3`}
-              />
-            </>
+            <div className="grid w-full grid-cols-2 gap-2">
+              <div className="min-w-0">
+                <label htmlFor={`${id}-franchise-type`} className="sr-only">Franchise type</label>
+                <FormSelect
+                  id={`${id}-franchise-type`}
+                  value={formData.franchiseType}
+                  onChange={(franchiseType) => setFormData({ ...formData, franchiseType })}
+                  options={franchiseTypeSelectOptions}
+                  placeholder="Franchise type"
+                  fieldClassName={`${heroFieldClass} px-3 pr-2`}
+                />
+              </div>
+              <div className="min-w-0">
+                <label htmlFor={`${id}-budget`} className="sr-only">Investment budget</label>
+                <FormSelect
+                  id={`${id}-budget`}
+                  value={formData.investmentBudget}
+                  onChange={(investmentBudget) => setFormData({ ...formData, investmentBudget })}
+                  options={budgetSelectOptions}
+                  placeholder="Select budget"
+                  fieldClassName={`${heroFieldClass} px-3 pr-2`}
+                />
+              </div>
+            </div>
           )}
 
           <div className="mt-auto flex flex-col gap-2.5 pt-4">
@@ -633,18 +654,29 @@ export function EnquiryForm({
         )}
 
         {showBudget && (
-          <div>
-            <label htmlFor={`${id}-budget`} className={labelClasses}>
-              Investment Budget
-            </label>
-            <FormSelect
-              id={`${id}-budget`}
-              value={formData.investmentBudget}
-              onChange={(budget) => setFormData({ ...formData, investmentBudget: budget })}
-              options={budgetSelectOptions}
-              placeholder="Select budget"
-              fieldClassName={inputClasses}
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <div className="min-w-0">
+              <label htmlFor={`${id}-franchise-type`} className={labelClasses}>Franchise Type</label>
+              <FormSelect
+                id={`${id}-franchise-type`}
+                value={formData.franchiseType}
+                onChange={(franchiseType) => setFormData({ ...formData, franchiseType })}
+                options={franchiseTypeSelectOptions}
+                placeholder="Select type"
+                fieldClassName={inputClasses}
+              />
+            </div>
+            <div className="min-w-0">
+              <label htmlFor={`${id}-budget`} className={labelClasses}>Investment Budget</label>
+              <FormSelect
+                id={`${id}-budget`}
+                value={formData.investmentBudget}
+                onChange={(investmentBudget) => setFormData({ ...formData, investmentBudget })}
+                options={budgetSelectOptions}
+                placeholder="Select budget"
+                fieldClassName={inputClasses}
+              />
+            </div>
           </div>
         )}
 

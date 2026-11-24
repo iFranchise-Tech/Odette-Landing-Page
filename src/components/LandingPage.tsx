@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { Header } from "@/components/sections/Header";
+import { Footer } from "@/components/sections/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { PostHeroCanvas } from "@/components/ui/PostHeroCanvas";
 import { scrollToPathWhenReady } from "@/lib/scroll";
@@ -28,14 +29,6 @@ const HowItWorksSection = dynamic(
   () =>
     import("@/components/sections/HowItWorksSection").then((module) => ({
       default: module.HowItWorksSection,
-    })),
-  { loading: () => null }
-);
-
-const WhyIFranchiseSection = dynamic(
-  () =>
-    import("@/components/sections/WhyIFranchiseSection").then((module) => ({
-      default: module.WhyIFranchiseSection,
     })),
   { loading: () => null }
 );
@@ -89,11 +82,11 @@ export function LandingPage() {
           <WhyConsiderSection />
           <WhyOdetteSection />
           <HowItWorksSection />
-          <WhyIFranchiseSection />
           <FAQSection />
           <FinalCTASection />
         </PostHeroCanvas>
       </main>
+      <Footer />
     </>
   );
 }

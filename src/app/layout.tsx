@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import { Suspense } from "react";
 import { GoogleAnalyticsProvider } from "@/components/GoogleAnalyticsProvider";
 import {
@@ -11,20 +10,12 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { rootMetadata } from "@/lib/seo";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
 export const metadata: Metadata = rootMetadata;
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#2e0ca2",
+  themeColor: "#171717",
   colorScheme: "light",
 };
 
@@ -34,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={plusJakarta.variable}>
+    <html lang="en-IN">
       <head>
         <GoogleTagManagerScript />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />

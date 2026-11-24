@@ -2,6 +2,7 @@
 
 import { type ElementType } from "react";
 import {
+  Briefcase,
   Building2,
   CalendarClock,
   Clock3,
@@ -25,6 +26,7 @@ const rowIcons: Record<string, ElementType> = {
   "Lock-in Period": Clock3,
   "Payback Period": CalendarClock,
   Outlets: MapPin,
+  "Franchise Types": Briefcase,
 };
 
 const investmentOverview = [
@@ -41,7 +43,12 @@ const investmentOverview = [
 
 const extendedOverviewRows = [
   { label: "Payback Period", value: "24 - 28 months" },
-  { label: "Outlets", value: "45+" },
+  { label: "Outlets", value: "50+" },
+  {
+    label: "Franchise Types",
+    value: "Master Franchise",
+    valueLine2: "Unit Franchise",
+  },
 ] as const;
 
 type OverviewRow = {
@@ -57,7 +64,6 @@ interface InvestmentOverviewCardProps {
   compact?: boolean;
   extended?: boolean;
   fillHeight?: boolean;
-  purpleBorder?: boolean;
 }
 
 export function InvestmentOverviewCard({
@@ -66,7 +72,6 @@ export function InvestmentOverviewCard({
   compact = false,
   extended = false,
   fillHeight = false,
-  purpleBorder = false,
 }: InvestmentOverviewCardProps) {
   const { navigate } = useSectionNavigation();
   const rows: OverviewRow[] = extended
@@ -82,7 +87,7 @@ export function InvestmentOverviewCard({
   const panelClass = `${fillHeight ? "h-full min-h-0 justify-between" : ""} ${className}`;
 
   return (
-    <PremiumPanel compact={compact || fillHeight} purpleBorder={purpleBorder} className={panelClass}>
+    <PremiumPanel compact={compact || fillHeight} className={panelClass}>
       {compact ? (
         <CardTitleHighlight compact>Investment Overview</CardTitleHighlight>
       ) : (

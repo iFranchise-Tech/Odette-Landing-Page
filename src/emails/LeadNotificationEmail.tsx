@@ -18,6 +18,7 @@ export function LeadNotificationEmail({ lead }: LeadNotificationEmailProps) {
     { label: "City", value: lead.city },
     { label: "State", value: lead.state },
     { label: "Budget", value: lead.investmentBudget },
+    { label: "Franchise Type", value: lead.franchiseType },
     { label: "Source", value: lead.source || "direct" },
     { label: "UTM Parameters", value: lead.utmParameters || "—" },
   ];

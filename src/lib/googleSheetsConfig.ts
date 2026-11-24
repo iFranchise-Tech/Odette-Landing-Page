@@ -23,6 +23,7 @@ export function buildGoogleSheetsPayload(
     state: payload.state,
     city: payload.city,
     investmentBudget: payload.investmentBudget,
+    franchiseType: payload.franchiseType,
     source: payload.source || "direct",
     utmParameters: payload.utmParameters || "",
   };

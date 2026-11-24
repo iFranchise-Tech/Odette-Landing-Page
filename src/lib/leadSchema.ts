@@ -6,6 +6,8 @@ export const BUDGET_OPTIONS = [
   "Above ₹75 Lakhs",
 ] as const;
 
+export const FRANCHISE_TYPE_OPTIONS = ["Unit Franchise", "Master Franchise"] as const;
+
 export const DEFAULT_FRANCHISE_INTEREST = "Odette Premium Fashion Franchise";
 
 export const leadSchema = z.object({
@@ -29,6 +31,9 @@ export const leadSchema = z.object({
   city: z.string().trim().min(1, "City is required").max(80),
   investmentBudget: z.enum(BUDGET_OPTIONS, {
     error: "Please select a valid investment budget",
+  }),
+  franchiseType: z.enum(FRANCHISE_TYPE_OPTIONS, {
+    error: "Please select a franchise type",
   }),
   franchiseInterest: z.string().trim().max(120).optional(),
   source: z.string().trim().max(120).optional(),

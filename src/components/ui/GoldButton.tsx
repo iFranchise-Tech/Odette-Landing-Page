@@ -5,7 +5,7 @@ import { type ReactNode } from "react";
 import { fadeUp } from "./AnimatedSection";
 
 export const ctaButtonBase =
-  "inline-flex items-center justify-center gap-1.5 rounded-full bg-brand font-semibold text-white shadow-[0_4px_16px_rgba(46,12,162,0.22)] transition-colors duration-200 hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-1.5 rounded-full bg-brand font-semibold text-white shadow-[0_4px_16px_rgba(0,0,0,0.16)] transition-colors duration-200 hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60";
 
 export const ctaButtonSize =
   "px-5 py-2.5 text-[13px] leading-snug lg:px-8 lg:py-3.5 lg:text-sm";
@@ -65,7 +65,7 @@ export function GoldButton({
 
   return (
     <motion.button
-      whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(46, 12, 162, 0.35)" }}
+      whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)" }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={buttonClassName}
@@ -79,12 +79,12 @@ export function GoldButton({
 }
 
 export const sectionTitleClass = (light = false) =>
-  `font-display text-2xl leading-tight tracking-tight md:text-3xl lg:text-[2.25rem] ${
+  `font-display text-[clamp(1.75rem,3.3vw,2.75rem)] leading-tight tracking-tight ${
     light ? "text-white" : "text-black"
   }`;
 
 export const sectionSubtitleClass = (light = false, centered = false) =>
-  `mt-2 max-w-4xl text-xs leading-snug sm:text-sm lg:mt-3 lg:text-base lg:leading-relaxed ${
+  `mt-3 max-w-4xl text-sm leading-relaxed sm:text-base lg:mt-4 ${
     centered ? "mx-auto" : ""
   } ${light ? "text-white/75" : "text-black"}`;
 
@@ -121,7 +121,7 @@ export function CardTitleHighlight({
   return (
     <div className="flex shrink-0 justify-center">
       <span
-        className={`inline-flex items-center rounded-full bg-cta font-display font-semibold text-white shadow-[0_2px_10px_rgba(91,45,139,0.22)] ${
+          className={`inline-flex items-center rounded-full bg-cta font-display font-semibold text-white shadow-[0_2px_10px_rgba(0,0,0,0.16)] ${
           compact
             ? "px-3.5 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-sm"
             : "px-4 py-1.5 text-sm sm:px-5 sm:py-2 sm:text-[15px]"

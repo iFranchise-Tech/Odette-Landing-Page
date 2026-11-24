@@ -22,13 +22,13 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export function ThankYouContent() {
   return (
-    <main className="relative h-[100dvh] max-h-[100dvh] overflow-hidden bg-[#f3ebf9]">
+    <main className="relative h-[100dvh] max-h-[100dvh] overflow-hidden bg-[#ffffff]">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 80% 55% at 15% 10%, rgba(91,45,139,0.18), transparent 55%), radial-gradient(ellipse 70% 50% at 90% 85%, rgba(91,45,139,0.14), transparent 50%), linear-gradient(160deg, #f8f3fc 0%, #efe4f7 45%, #f3ebf9 100%)",
+            "radial-gradient(ellipse 80% 55% at 15% 10%, rgba(0,0,0,0.18), transparent 55%), radial-gradient(ellipse 70% 50% at 90% 85%, rgba(0,0,0,0.14), transparent 50%), linear-gradient(160deg, #ffffff 0%, #f7f7f7 45%, #ffffff 100%)",
         }}
       />
       <motion.div
@@ -58,7 +58,7 @@ export function ThankYouContent() {
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.55, delay: 0.08, ease: easeOut, type: "spring", stiffness: 220, damping: 16 }}
-          className="relative mt-3 flex h-14 w-14 items-center justify-center rounded-full border border-cta/20 bg-white shadow-[0_12px_40px_rgba(91,45,139,0.18)] sm:mt-4 sm:h-16 sm:w-16"
+          className="relative mt-3 flex h-14 w-14 items-center justify-center rounded-full border border-cta/20 bg-white shadow-[0_12px_40px_rgba(0,0,0,0.18)] sm:mt-4 sm:h-16 sm:w-16"
         >
           <motion.span
             className="absolute inset-0 rounded-full border-2 border-cta/30"
@@ -141,7 +141,7 @@ export function ThankYouContent() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackBookConsultation("thank_you_page")}
-            className="inline-flex min-h-[2.5rem] flex-1 items-center justify-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(46,12,162,0.28)] transition-transform hover:bg-brand-hover hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 active:scale-[0.98]"
+            className="inline-flex min-h-[2.5rem] flex-1 items-center justify-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(0,0,0,0.28)] transition-transform hover:bg-brand-hover hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 active:scale-[0.98]"
           >
             Book a Meeting Now
           </a>

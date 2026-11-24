@@ -20,10 +20,10 @@ function image(
 export const SITE_IMAGES = {
   hero: {
     desktop: image(
-      "/images/hero/desktop.webp",
+      "/images/hero/odette-western-catalog.png",
       dimensions["hero.desktop"].width,
       dimensions["hero.desktop"].height,
-      "Odette premium women's fashion franchise opportunity in India"
+      "Odette fashion campaign with a model in an ivory embroidered outfit"
     ),
     mobile: image(
       "/images/hero/mobile.webp",

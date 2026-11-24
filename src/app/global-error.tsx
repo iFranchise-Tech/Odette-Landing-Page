@@ -10,8 +10,8 @@ export default function GlobalError({
   return (
     <html lang="en">
       <body className="font-body antialiased">
-        <main className="flex min-h-screen flex-col items-center justify-center bg-[#f3ebf9] px-6 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#5b2d8b]">
+        <main className="flex min-h-screen flex-col items-center justify-center bg-[#ffffff] px-6 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#171717]">
             Application error
           </p>
           <h1 className="mt-3 text-3xl font-bold text-black">Something went wrong</h1>
@@ -21,7 +21,7 @@ export default function GlobalError({
           <button
             type="button"
             onClick={reset}
-            className="mt-6 inline-flex items-center justify-center rounded-full bg-[#5b2d8b] px-6 py-3 text-sm font-semibold text-white"
+            className="mt-6 inline-flex items-center justify-center rounded-full bg-[#171717] px-6 py-3 text-sm font-semibold text-white"
           >
             Try again
           </button>

@@ -1,75 +1,77 @@
 "use client";
 
-import { SITE_IMAGES } from "@/lib/images";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeUp } from "../ui/AnimatedSection";
-import { SectionHeading, sectionBodyTextClass } from "../ui/GoldButton";
 import { SectionShell } from "../ui/SectionShell";
 
-function OdetteBrandCard() {
-  return (
-    <div className="flex w-full items-center justify-center py-2 md:py-0">
-      <div className="premium-rotating-border luxury-shadow w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px]">
-        <div className="premium-rotating-border__inner flex w-full flex-col items-center justify-center px-10 py-12 sm:px-12 sm:py-14">
-          <Image
-            src={SITE_IMAGES.brand.odetteMark.src}
-            alt=""
-            aria-hidden
-            width={SITE_IMAGES.brand.odetteMark.width}
-            height={SITE_IMAGES.brand.odetteMark.height}
-            sizes="(max-width: 640px) 220px, 250px"
-            quality={85}
-            className="h-auto w-full max-w-[220px] object-contain sm:max-w-[250px]"
-          />
-          <p className="mt-8 font-display text-[11px] font-medium uppercase tracking-[0.32em] text-charcoal sm:mt-10 sm:text-xs">
-            Odette
-          </p>
-          <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.22em] text-black sm:text-[11px]">
-            Premium Fashion Retail
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
+const brandFacts = [
+  { value: "2020", label: "Founded in Bengaluru" },
+  { value: "50+", label: "Stores and growing" },
+  { value: "FICO", label: "Company operated" },
+];
 
 export function WhyConsiderSection() {
   return (
-    <SectionShell id="about-odette" gradientTone={0}>
-      <div className="flex w-full max-w-6xl flex-col items-center">
-        <SectionHeading
-          compact
-          centered
-          pill="About Odette"
-          title="A Mass-Premium Fashion Brand Built for India"
-          subtitle="Odette blends trend-led design, accessible pricing, and a growing retail footprint — creating a brand customers trust and investors can scale."
-        />
+    <SectionShell
+      id="about-odette"
+      ariaLabel="About Odette and its founders"
+      fullViewport={false}
+      className="about-founder-section"
+    >
+      <div className="about-founder-layout">
+        <motion.div
+          className="about-founder-copy"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeUp}
+        >
+          <span className="about-founder-eyebrow">About Odette</span>
+          <h2>A mass-premium fashion brand built for India.</h2>
+          <p>
+            Odette brings high-fashion style within reach, with trend-led Western and lifestyle
+            collections designed for women aged 15 to 65.
+          </p>
+          <p>
+            Founded in Bengaluru in 2020, Odette has grown to more than 50 stores. Fresh design,
+            quality, and accessible pricing shape a retail experience made to grow with its
+            customers and franchise partners.
+          </p>
 
-        <div className="grid w-full items-center gap-6 md:grid-cols-[0.95fr_1.05fr] md:gap-10 lg:gap-12">
-          <OdetteBrandCard />
+          <div className="about-founder-facts" aria-label="Odette at a glance">
+            {brandFacts.map((fact) => (
+              <div className="about-founder-fact" key={fact.label}>
+                <strong>{fact.value}</strong>
+                <span>{fact.label}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="min-w-0 text-left"
-          >
-            <p className={sectionBodyTextClass}>
-              Odette is India&apos;s mass-premium fashion brand — high-fashion style at
-              pocket-friendly prices for ages 15 to 65.
-              <br />
-              <br />
-              Founded in Bengaluru in 2020, it has grown to 45+ stores with Western and lifestyle
-              collections customers trust.
-              <br />
-              <br />
-              Fresh designs, premium quality, and accessible pricing — a brand built to scale for
-              customers and franchise partners alike.
-            </p>
-          </motion.div>
-        </div>
+        <motion.div
+          className="about-founder-visual"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={fadeUp}
+        >
+          <figure className="about-founder-photo">
+            <Image
+              src="/images/brand/odette-founders.jpg"
+              alt="Odette founder Mamta Roy and co-founder Amit Roy sharing their vision for the brand"
+              width={2560}
+              height={1360}
+              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 55vw, 650px"
+              quality={85}
+              className="about-founder-photo__image"
+            />
+          </figure>
+          <div className="about-founder-caption">
+            <span>Meet the people behind the point of view</span>
+            <strong>Mamta Roy <i /> Amit Roy</strong>
+          </div>
+        </motion.div>
       </div>
     </SectionShell>
   );

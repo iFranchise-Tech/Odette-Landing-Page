@@ -1,14 +1,13 @@
 "use client";
 
-import { SITE_IMAGES } from "@/lib/images";
 import { ctaButtonClass } from "@/components/ui/GoldButton";
+import { OdetteWordmark } from "@/components/ui/OdetteWordmark";
 import { trackBookConsultation } from "@/lib/analytics";
 import { CONTACT_PATH, NAV_LINKS, HOME_PATH, SECTION_ID_TO_PATH, type SectionId } from "@/lib/site";
 import { isScrollingProgrammatically } from "@/lib/scroll";
 import { useSectionNavigation } from "@/lib/useSectionNavigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 
 const HEADER_HEIGHT_WITH_TAGLINE = "4.75rem";
@@ -19,15 +18,14 @@ const SCROLL_SECTION_IDS = [
   "about-odette",
   "why-odette",
   "invest-process",
-  "why-ifranchise",
   "faq",
   "contact",
 ] as const;
 
 function navLinkClass(isActive: boolean) {
   return isActive
-    ? "bg-white font-semibold text-brand shadow-[0_4px_16px_rgba(0,0,0,0.12)]"
-    : "text-white/80 hover:bg-white/10 hover:text-white";
+    ? "bg-[#f3f3f3] font-semibold text-[#171515]"
+    : "text-[#393433] hover:bg-[#f3f3f3] hover:text-[#171515]";
 }
 
 export function Header() {
@@ -134,7 +132,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-brand shadow-[0_4px_24px_rgba(43,43,43,0.12)] transition-[height] duration-300 ease-out ${
+        className={`fixed left-0 right-0 top-0 z-50 border-b border-[#ededed] bg-white/95 shadow-[0_4px_24px_rgba(43,43,43,0.06)] backdrop-blur-md transition-[height] duration-300 ease-out ${
           showHeroTagline ? "h-[4.75rem]" : "h-16"
         }`}
       >
@@ -142,29 +140,9 @@ export function Header() {
           <a
             href={HOME_PATH}
             onClick={(e) => goToSection(e, HOME_PATH)}
-            className="flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3"
+            className="header-brand flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3"
           >
-            <Image
-              src={SITE_IMAGES.brand.iFranchiseLogo.src}
-              alt=""
-              aria-hidden
-              width={SITE_IMAGES.brand.iFranchiseLogo.width}
-              height={SITE_IMAGES.brand.iFranchiseLogo.height}
-              sizes="40px"
-              priority
-              unoptimized
-              className="h-9 w-9 shrink-0 rounded-lg object-cover ring-1 ring-white/30 sm:h-10 sm:w-10"
-            />
-            <Image
-              src={SITE_IMAGES.brand.iFranchiseWordmark.src}
-              alt={SITE_IMAGES.brand.iFranchiseWordmark.alt}
-              width={SITE_IMAGES.brand.iFranchiseWordmark.width}
-              height={SITE_IMAGES.brand.iFranchiseWordmark.height}
-              sizes="140px"
-              priority
-              unoptimized
-              className="block h-7 w-auto min-w-0 sm:h-8"
-            />
+            <OdetteWordmark />
           </a>
 
           <nav className="hidden items-center gap-1 xl:flex" aria-label="Main navigation">
@@ -192,15 +170,15 @@ export function Header() {
                 trackBookConsultation("header_book_a_call");
                 goToSection(e, CONTACT_PATH);
               }}
-              className="hidden items-center justify-center rounded-full bg-white px-3.5 py-2 text-[13px] font-semibold text-brand shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-all duration-300 hover:bg-white/90 sm:inline-flex lg:px-4"
+              className="hidden items-center justify-center rounded-full bg-[#171515] px-4 py-2.5 text-[12px] font-semibold uppercase tracking-[0.04em] text-white shadow-[0_8px_22px_rgba(31,24,24,0.13)] transition-all duration-300 hover:bg-[#3b3431] sm:inline-flex lg:px-5"
             >
-              Book a call
+              Enquire now
             </a>
 
             <button
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white transition-colors duration-300 hover:bg-white/10 xl:hidden"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#dedede] text-[#292522] transition-colors duration-300 hover:bg-[#f5f5f5] xl:hidden"
               aria-expanded={menuOpen}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
@@ -292,7 +270,7 @@ export function Header() {
                 }}
                 className={ctaButtonClass({ fullWidth: true })}
               >
-                Book a call
+                Enquire now
               </motion.a>
             </div>
           </motion.div>

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 const WHATSAPP_NUMBER = "919129130303";
-const WHATSAPP_MESSAGE = "Hi, I am interested in the Odette franchise opportunity.";
+const WHATSAPP_MESSAGE = "Hi, I would like to know more about the Odette franchise opportunity. Please share the investment and franchise details.";
 
 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
@@ -33,8 +33,8 @@ export function WhatsAppButton() {
       onClick={() => trackWhatsAppClick("floating_button")}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      aria-label="Chat on WhatsApp — I am interested in the Odette franchise opportunity"
-      className="whatsapp-floating-btn fixed bottom-6 right-4 z-[100] flex h-14 w-14 items-center justify-center rounded-full bg-brand text-white opacity-100 shadow-[0_8px_24px_rgba(46,12,162,0.35)] transition-colors duration-300 hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 max-lg:h-12 max-lg:w-12 lg:right-6"
+      aria-label="Chat with us on WhatsApp about the Odette franchise opportunity"
+      className="whatsapp-floating-btn fixed bottom-4 right-4 z-[100] relative isolate flex h-14 w-14 items-center justify-center rounded-full border border-black bg-black text-white opacity-100 shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition-shadow duration-300 hover:bg-black hover:text-white hover:shadow-[0_10px_28px_rgba(0,0,0,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 max-lg:h-12 max-lg:w-12 lg:bottom-4 lg:right-6"
     >
       <WhatsAppIcon />
     </motion.a>
