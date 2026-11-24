@@ -11,6 +11,13 @@ export const FRANCHISE_TYPE_OPTIONS = ["Unit Franchise", "Master Franchise"] as 
 export const DEFAULT_FRANCHISE_INTEREST = "Odette Premium Fashion Franchise";
 
 export const leadSchema = z.object({
+  submissionId: z
+    .string()
+    .trim()
+    .min(1)
+    .max(128)
+    .regex(/^[a-zA-Z0-9:_-]+$/, "Invalid submission identifier")
+    .optional(),
   fullName: z
     .string()
     .trim()

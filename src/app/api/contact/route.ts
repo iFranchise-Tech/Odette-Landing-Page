@@ -50,8 +50,13 @@ export async function POST(request: Request) {
       return validationErrorResponse(parsed.error);
     }
 
-    const lead = normalizeLeadInput(parsed.data);
+    const lead = {
+      ...normalizeLeadInput(parsed.data),
+      // Reuse the browser's ID for retry-safe Sheets writes and Resend sends.
+      submissionId: parsed.data.submissionId || crypto.randomUUID(),
+    };
     const sheetsPayload = {
+      submissionId: lead.submissionId,
       fullName: lead.fullName,
       mobileNumber: lead.mobileNumber,
       email: lead.email,
@@ -109,6 +114,7 @@ export async function POST(request: Request) {
       success: true,
       message: "Your inquiry has been submitted successfully.",
       confirmationSent,
+      notificationSent,
       sheetsSynced,
     });
   } catch (error) {

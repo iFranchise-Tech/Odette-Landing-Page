@@ -114,6 +114,7 @@ export function EnquiryForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   // Blocks a second submit that fires before the disabled button re-renders
   const submitInFlightRef = useRef(false);
+  const submissionIdentityRef = useRef<{ payloadKey: string; id: string } | null>(null);
   const [formData, setFormData] = useState<EnquiryFormData>({
     fullName: "",
     countryCode: "+91",
@@ -242,7 +243,25 @@ export function EnquiryForm({
 
     const resolvedState = resolveIndianState(stateValue) ?? stateValue;
     const attribution = getStoredAttribution();
+    const payloadKey = JSON.stringify({
+      fullName: formData.fullName.trim(),
+      mobileNumber: `${formData.countryCode} ${formData.mobile}`,
+      email: emailValue,
+      state: resolvedState,
+      city: cityValue,
+      investmentBudget: formData.investmentBudget,
+      franchiseType: formData.franchiseType,
+      source: attribution.source,
+      utmParameters: attribution.utmParameters,
+    });
+    if (submissionIdentityRef.current?.payloadKey !== payloadKey) {
+      submissionIdentityRef.current = {
+        payloadKey,
+        id: crypto.randomUUID(),
+      };
+    }
     const leadPayload = {
+      submissionId: submissionIdentityRef.current.id,
       fullName: formData.fullName.trim(),
       mobileNumber: `${formData.countryCode} ${formData.mobile}`,
       email: emailValue,

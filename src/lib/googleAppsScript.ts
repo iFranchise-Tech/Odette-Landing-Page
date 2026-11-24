@@ -13,6 +13,7 @@ class GoogleAppsScriptTimeoutError extends Error {}
 
 export type GoogleAppsScriptResult = {
   success?: boolean;
+  duplicate?: boolean;
   error?: string;
   message?: string;
   status?: string;
@@ -137,10 +138,14 @@ async function postToGoogleAppsScript(
 }
 
 export async function submitPayloadToGoogleAppsScript(
-  payload: Record<string, string>
+  payload: Record<string, string>,
+  submissionId?: string
 ): Promise<GoogleAppsScriptResult> {
   // Same ID on every retry so the script can ignore repeats of this submission
-  const requestPayload = { ...payload, submissionId: crypto.randomUUID() };
+  const requestPayload = {
+    ...payload,
+    submissionId: submissionId || payload.submissionId || crypto.randomUUID(),
+  };
   const deadline = Date.now() + GAS_TOTAL_BUDGET_MS;
   let lastError: Error | null = null;
 

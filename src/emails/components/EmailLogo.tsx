@@ -1,12 +1,12 @@
 import { Img, Section, Text } from "@react-email/components";
 import { EMAIL_BRAND } from "../brand";
-import { getOdetteLogoCidSrc } from "../odetteLogo";
+import { ODETTE_EMAIL_LOGO_URL } from "../odetteLogo";
 
 export function EmailLogo() {
   return (
     <Section style={logoSectionStyle}>
       <Img
-        src={getOdetteLogoCidSrc()}
+        src={ODETTE_EMAIL_LOGO_URL}
         alt="Odette"
         width="220"
         height="auto"
